@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+             /* background-color:#11100b;  */
+             background-color: #c3dbdd !important;    
+        }
+        .br{
+         border-radius: 5px;
+        }
+        .bg{
+            font-family:monospace;
+
+            background-color: rgb(246, 248, 250);
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
+        }
+        .btnStyle{
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
+
+        }
+        #add-btn {
+            height: 30px;
+        }
+        .task-div {
+            margin-top: 10px;
+        }
+        .btn-xs {
+        padding: 1px 5px; /* Reduce padding */
+        font-size: 9px;  /* Reduce font size */
+        line-height: 0;   /* Adjust line height */
+    }
+    .btn-primary1 {
+    background-color: #ff5733; /* New primary color */
+    border-color: #ff5733; /* New border color */
+}
+
+     
+        
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="card " style="width: 18rem; margin-top: 12%; margin-left: 40%;">
+            <div class="card-body bg br">
+              <h5 class="card-title">To Do List</h5>
+              <input id="in" type="text" placeholder="Add a new task">
+              <button id="addBtn" class="btn btn-success btn-sm">Add</button>
+              <div id="todoList">
+            
+              </div>
+              
+            </div>
+          </div>
+    </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let todoList = document.getElementById("todoList");
+let addBtn = document.getElementById("addBtn");
+let inputField = document.getElementById("in");
+
+let todos = [];
+
+addBtn.addEventListener('click', () => {
+    let task = inputField.value.trim();
+    if (task) {
+        todos.push(task);
+        addtodo(task);
+        inputField.value = '';
+        todoList.style.marginTop = "17px";
+    }
+});
+
+function addtodo(todo) {
+    let para = document.createElement('p');
+    let btnEdit = document.createElement('button');
+    let btnDelete = document.createElement('button');
+    let btnSave = document.createElement('button');
+
+    para.innerText = todo;
+    btnEdit.innerText = "Edit";
+    btnDelete.innerText = "Delete";
+    btnSave.innerText = "Save";
+    btnSave.style.display = "none"; // Hide save initially
+
+    para.style.display = 'inline-block';
+    // para.style.background = "#D3D3D3";
+    todoList.style.background="rounded-background"
+    
+    para.style.width ="auto"
+    // para.style.padding="px";
+    // para.style.outline = "0.2px solid #333"
+    para.style.width = "109.6px";
+    para.classList.add('mx-2');
+    para.style.padding = "2px"
+    btnEdit.className = "btn btn-primary btn-sm btn-xs bg ";
+    btnDelete.className = "btn btn-danger btn-sm mx-2 btn-xs btnStyle ";
+    btnSave.className = "btn btn-primary btn-sm btn-xs";
+
+    // Append elements
+    todoList.appendChild(para);
+    todoList.appendChild(btnEdit);
+    todoList.appendChild(btnSave);
+    todoList.appendChild(btnDelete);
+
+    // Edit function
+    btnEdit.addEventListener('click', () => {
+        para.contentEditable = 'true';
+        para.focus();
+        btnEdit.style.display = "none";
+        btnSave.style.display = "inline-block"; 
+    });
+
+    // Save function
+    btnSave.addEventListener('click', () => {
+        para.contentEditable = "false";
+        btnEdit.style.display = 'inline-block';
+        btnSave.style.display = "none"; 
+        localStorage.setItem('savedText', para.textContent); 
+        console.log(para.textContent);
+    });
+
+    // Load saved text from localStorage
+    window.addEventListener('load', () => {
+        const savedItem = localStorage.getItem('savedText');
+        if (savedItem) {
+            para.textContent = savedItem;
+        }
+    });
+
+    // Delete function
+    btnDelete.addEventListener('click', () => {
+        para.remove();
+        btnEdit.remove();
+        btnDelete.remove();
+        btnSave.remove();
+    });
+}
+
+   
+    //    })
+    // //    savedText.addEventListener('input',()=>
+    // // {
+    // //     // if(savedText.contentEditable === 'true'){
+    // //     //     btn3.disabled = false;        }
+    // //     //     else {
+    // //     //         btn3.disabled=true;
+    // //     //     }
+    // // })
+    // //delete
+    // btn2.addEventListener('click',()=>{
+    //     console.log("delete wrks")
+    //     para.remove();
+    //     btn2.remove();
+    //     btn.remove();
+    //     btn3.remove();
+    // })
+      
+    // }
+
+    
+    
+
+     
+     
+    </script>
+</body>
+</html>

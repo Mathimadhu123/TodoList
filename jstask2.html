@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Input: [1,2,2,3,4,5,5,6]
+    Output: [1,2,3,4,5,6] -->
+    <script>
+        let newArr = [];
+        let arr = [1, 2, 2, 3, 4, 5, 5, 6];
+    
+    // loop through array
+    for(let i of arr) {
+      
+         if(newArr.indexOf(i) === -1) { 
+            newArr.push(i);
+        }
+        // console.log(indexOf(i));
+    }
+    console.log("before removing duplicate"+" "+arr);
+     console.log("after removing duplicate"+" "+newArr);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = [
+            {id:1, name:'a'},
+            {id:2, name:'b'},
+            {id:3, name:'c'},
+        ]
+        console.log(obj.map((a)=> a.name));
+        let obj2 = [
+            {marks:[25,24,34],name:'rehan'},
+            // {marks:[25,35,56],name:'neha'}
+        ]
+        const total = obj2.map((a)=> a.marks);
+        const ar=total.reduce((tot,cur)=> tot.concat(cur),[]).reduce((tot,cur)=>tot+cur,0);
+        console.log(ar)
+
+        const sort1 = total.reduce((tot,cur)=>tot.concat(cur))
+        console.log(sort1)
+        console.log(sort1.sort((a,b)=>a-b))
+    </script>
+</body>
+</html>
